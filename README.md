@@ -1,82 +1,35 @@
-# Liberation Circuit
+﻿# libcirc-alt-unix
 
-This is the release version of Liberation Circuit, an RTS/programming game.
+version: 1.3-alt
 
-To play the prebuilt binaries on Windows, [download the latest release](https://github.com/linleyh/liberation-circuit/releases) and run `LibCirc.exe`.
+This is an alternative version of Liberation Circuit, an RTS/programming game, made to be easier to compile and mod.
+This is NOT an official release, the original game can be found at https://github.com/linleyh/liberation-circuit.git
 
-Vanilla has set up a [Discord server](https://discord.gg/8q7DFaM) to discuss strategy and things.
+This version is made to compile on Unix Systems only, to get the version for Windows, go to https://github.com/Xenos6666/libcirc-alt-windows
 
-## Screenshots
+To compile the game, just run make.
+If you encounter any problem during compilation, please report it to me on Vanilla's Liberation Circuit Discord server (you should find the link on the game's website).
 
-![a screenshot](https://i.imgur.com/pPIJ03I.png)
-![another screenshot](https://i.imgur.com/QKWzkqA.png)
+The executable should go in the "bin" subdirectory (the same directory as the "init.txt" file). The game requires write access to this directory to save mission progress.
+If this isn't okay, you can specify a path in the fopen calls at about lines 2808 and 2860 of h_story.c.
 
-## Compiling
+If you are running the game from a terminal, make sure to cd into bin/ before running it!
 
-It should compile on any OS supported by Allegro 5 - to build, compile the c files
-in the source directory and link with Allegro 5. More detailed instructions are
-below. More detail about the source file structure is at the start of `m_main.c`.
+---
 
-The executable should go in the "bin" subdirectory (the same directory as the "init.txt" file).
-The game requires write access to this directory to save mission progress. If this isn't okay, you can
-specify a path in the fopen calls at about lines 2808 and 2860 of `h_story.c`.
+On top of changing the way this game compiles, this versions changes some of the source code to make it more compatible with modding.
+I do NOT guarantee that the game will behave exactly the same way the original version does (although if it doesn't that proabably means I did something terribly wrong)
 
-Don't try to compile the `.c` files in the /proc or /story subdirectories! They are code used by the game itself.
+---
 
-- [Manual.html](bin/Manual.html) has extensive detail about the game, including documentation for the in-game API.
-- Edit [init.txt](bin/init.txt) to set screen resolution and other options (fullscreen, sound volume, key rebinding, colourblind mode etc).
+Don't try to compile the .c files in the /proc or /story subdirectories! They are code used by the game itself.
 
-To build using do/redo (using the .do scripts by Nils Dagsson Moskopp):
+- Manual.html has extensive detail about the game, including documentation for the in-game API.
 
-To build Liberation Circuit on any Unix-like OS like GNU/Linux,
-execute the “do” script. Note that “do” always compiles all source
-files; if you want to rebuild targets only when relevant source files
-have changed, you should use “redo” instead. A version of “redo” can
-be obtained from <http://news.dieweltistgarnichtso.net/bin/redo-sh.html>
-(written in Bourne shell) or <http://jdebp.eu./Softwares/redo/> (written
-in C++).
+- Edit init.txt to set screen resolution and other options (fullscreen, sound volume, key rebinding, colourblind mode etc).
 
-## Compiling on Linux
+It looks like this (this is github markdown):
 
-Packages needed for Liberation Circuit on Debian GNU/Linux or Ubuntu:
+![a screenshot](http://i.imgur.com/pPIJ03I.png)
 
-- liballegro-acodec5-dev
-- liballegro-audio5-dev
-- liballegro-dialog5-dev
-- liballegro-image5-dev
-- liballegro5-dev
-
-To build using cmake (using the cmake scripts by Kyle Findlay; The
-following instructions are from u/JCanseco on reddit)
-
-> I did compile it with ccmake ncurses frontend on Antergos (based on Arch Linux).
->
-> mkdir build, cd build, cmake ..
->
-> Adding this line to CMAKE_EXE_LINKER_FLAGS was enough:
->
-> -lallegro_image -lallegro_primitives -lallegro_color -lallegro_acodec -lallegro_audio -lallegro_dialog -lallegro_font -lallegro_main -lallegro -lm
->
-> make -j4 and it compiled fine with Allegro 5.2.2. Extracted zip data on bin folder and it did run fine.
-
-## Compiling on macOS
-
-To build on macOS (Sierra (10.12) with latest Homebrew and Xcode)
-
-```sh
-git clone https://github.com/linleyh/liberation-circuit.git
-cd liberation-circuit
-brew install allegro
-./do
-cd bin
-libcirc
-```
-
-If you are using a Retina screen, you may want to set the double_fonts option to make the text larger (edit init.txt to do this).
-
-## Thanks to:
-
-- [Nils Dagsson Moskopp](https://github.com/erlehmann) for very useful feedback on the alpha and beta versions.
-- zugz (from the tigsource forum) for very useful feedback on the beta.
-- Serge Zaitsev's [cucu](http://zserge.com/blog/cucu-part1.html) for a very clear explanation of how to write a simple C compiler.
-- Batuhan Bozkurt's [otomata](http://www.earslap.com/page/otomata.html) for the basis of the cellular automata-based procedural music generation.
+![another screenshot](http://i.imgur.com/QKWzkqA.png)
